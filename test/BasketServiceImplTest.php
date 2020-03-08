@@ -50,7 +50,6 @@ class BasketServiceImplTest extends TestCase {
         $productCatalogue[$productGreen->getCode()] = $productGreen;
         $productCatalogue[$productBlue->getCode()] = $productBlue;
 
-        //$products = array($productRed, $productGreen, $productBlue);
         
         $itemRed = new BasketItem($productRed, 1);
         $itemGreen =  new BasketItem($productGreen, 1);
@@ -76,9 +75,6 @@ class BasketServiceImplTest extends TestCase {
         $productCatalogue[$productGreen->getCode()] = $productGreen;
         $productCatalogue[$productBlue->getCode()] = $productBlue;
 
-        //$products = array($productRed, $productGreen, $productBlue);
-        
-        $itemRed = new BasketItem($productRed, 1);
         $itemGreen =  new BasketItem($productGreen, 1);
         $itemBlue =  new BasketItem($productBlue, 2);
         
@@ -104,8 +100,6 @@ class BasketServiceImplTest extends TestCase {
         $productCatalogue[$productRed->getCode()] = $productRed;
         $productCatalogue[$productGreen->getCode()] = $productGreen;
         $productCatalogue[$productBlue->getCode()] = $productBlue;
-
-        //$products = array($productRed, $productGreen, $productBlue);
         
         $itemGreen =  new BasketItem($productGreen, 1);
         $itemBlue =  new BasketItem($productBlue, 2);
@@ -129,7 +123,7 @@ class BasketServiceImplTest extends TestCase {
     }
     
     
-    public function testGetBasketTotalWithGreenBlueWidgets(){
+    public function testGetBasketTotalWithGreenBlueWidgetsWithDelivery(){
         $productRed = new Product("Red Widget", "R01", 32.95, Offer::BUY_ONE_GET_OTHER_HALF);
         $productGreen = new Product("Green Widget", "G01", 24.95, "");
         $productBlue = new Product("Blue Widget", "B01", 7.95, "");
@@ -139,7 +133,7 @@ class BasketServiceImplTest extends TestCase {
         $productCatalogue[$productGreen->getCode()] = $productGreen;
         $productCatalogue[$productBlue->getCode()] = $productBlue;
 
-        $itemRed = new BasketItem($productRed, 1);
+        
         $itemGreen =  new BasketItem($productGreen, 1);
         $itemBlue =  new BasketItem($productBlue, 1);
         
@@ -155,7 +149,10 @@ class BasketServiceImplTest extends TestCase {
 
     }
     
-    public function testGetBasketTotalWithRedWidget(){
+    /**
+     * Buy2 Get one Half price is applied
+     */
+    public function testGetBasketTotalWith2RedWidgetWithOfferAndDelivery(){
         $productRed = new Product("Red Widget", "R01", 32.95, Offer::BUY_ONE_GET_OTHER_HALF);
         $productGreen = new Product("Green Widget", "G01", 24.95, "");
         $productBlue = new Product("Blue Widget", "B01", 7.95, "");
@@ -203,7 +200,10 @@ class BasketServiceImplTest extends TestCase {
         $this->assertEquals(60.85, $basketServiceTest->getBasketTotal());
     }
     
-    public function testGetBasketTotalWith3Red2BlueWidget0Delivery(){
+    /**
+     * Buy2 Get one Half price is applied on Red widget
+     */
+    public function testGetBasketTotalWith3Red2BlueWidgetWith0Delivery(){
         $productRed = new Product("Red Widget", "R01", 32.95, Offer::BUY_ONE_GET_OTHER_HALF);
         $productGreen = new Product("Green Widget", "G01", 24.95, "");
         $productBlue = new Product("Blue Widget", "B01", 7.95, "");
@@ -229,6 +229,9 @@ class BasketServiceImplTest extends TestCase {
         $this->assertEquals(98.28, $basketServiceTest->getBasketTotal());
     }
     
+    /**
+     * Buy2 Get one Half price is applied on Red widget
+     */
     public function testGetBasketTotalWith4Red2BlueWidgetWith0Delivery(){
         $productRed = new Product("Red Widget", "R01", 32.95, Offer::BUY_ONE_GET_OTHER_HALF);
         $productGreen = new Product("Green Widget", "G01", 24.95, "");
