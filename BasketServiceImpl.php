@@ -71,7 +71,6 @@ class BasketServiceImpl implements BasketService{
             $basketTotal = $basketTotal + $itemTotal;
         }
         $deliveryCharge = $this->applyDeliveryChargeOnBasket($basketTotal);
-        echo "<br>Basket Total is ". $basketTotal ." and Delivery Charge is  ". $deliveryCharge;
         return round($basketTotal+$deliveryCharge, 2);
     }
    
@@ -108,16 +107,16 @@ class BasketServiceImpl implements BasketService{
         if($quantity>1 && $quantity%2 ==0){
             $productPrice = $product->getUnitPrice()*($quantity/2) + 
                     ($product->getUnitPrice()/2)*($quantity/2);
-            echo "<br> Inside 1st block". $productPrice;
+            
         }elseif($quantity>1 && $quantity%2 >0){
             $quantityForFullPrice = $quantity%2 + (int)($quantity/2);
             $quantityForHalfPrice = (int)($quantity/2);
             $productPrice = ($product->getUnitPrice()* $quantityForFullPrice)+
                     ( ($product->getUnitPrice()/2)* $quantityForHalfPrice);        
-            echo "<br> Inside 2nd block". $productPrice;
+            
         }else{
             $productPrice = $product->getUnitPrice()*$quantity;  
-            echo "<br> Inside else block". $productPrice;
+           
         }
         return $productPrice;
     }
